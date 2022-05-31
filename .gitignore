@@ -5,3 +5,8 @@ build/
 tmp/
 temp/
 .env
+*.lock
+*-lock*
+*.log
+package-lock*
+dist/
