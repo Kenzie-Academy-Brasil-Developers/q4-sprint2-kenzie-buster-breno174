@@ -25,6 +25,7 @@ export class Dvds {
 
   @ManyToOne(() => Stock, (stock) => stock.dvds)
   stock: Stock;
+
   constructor() {
     if (!this.DvdId) {
       this.DvdId = uuid();

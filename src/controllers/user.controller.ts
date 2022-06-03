@@ -1,8 +1,16 @@
 import { Request, Response } from "express";
-import { User } from "../entities/User";
+import userService from "../services/user.service";
 
 class UserController {
-  createuser = async (req: Request, res: Response) => {};
+  loginUser = async (req: Request, res: Response) => {
+    const { status, message } = await userService.loginUser(req);
+    return res.status(status).json(message);
+  };
+  createuser = async (req: Request, res: Response) => {
+    const user = await userService.createUser(req);
+
+    return res.status(201).json(user);
+  };
 }
 
 export default new UserController();

@@ -15,6 +15,7 @@ export class Stock {
 
   @OneToMany(() => Dvds, (dvd) => dvd.stock)
   dvds: Dvds[];
+
   constructor() {
     if (!this.stockId) {
       this.stockId = uuid();
