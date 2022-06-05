@@ -14,14 +14,20 @@ dotenv.config();
 class UserService {
   loginUser = async ({ validated }: Request): Promise<Ilogin> => {
     const user: User = await userRepository.findOne({
-      email: validated.email,
+      email: (validated as User).email,
     });
+    if (!user.password) {
+      return {
+        status: 400,
+        message: { error: "password is a required field" },
+      };
+    }
 
     if (!user) {
       return { status: 401, message: { error: "Invalid credencials" } };
     }
 
-    if (!(await user.comparePwd(validated.password))) {
+    if (!(await user.comparePwd((validated as User).password))) {
       return { status: 401, message: { error: "Invalid credencials" } };
     }
     const token: string = sign({ ...user }, String(process.env.SECRET_KEY), {
@@ -30,7 +36,7 @@ class UserService {
 
     return {
       status: 200,
-      message: user,
+      message: { token: token },
     };
   };
   createUser = async ({ validated }: Request): Promise<AssertsShape<any>> => {

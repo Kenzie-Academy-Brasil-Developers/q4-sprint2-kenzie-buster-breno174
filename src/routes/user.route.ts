@@ -12,7 +12,7 @@ userRouter.post(
   userController.createuser
 );
 userRouter.post(
-  "/login",
+  "/users/login",
   validateSchema(loginUserSchema),
   userController.loginUser
 );
