@@ -1,4 +1,4 @@
-/* import UserRepository from "./user.repository";
+import DvdsRepository from "./dvd.repository";
+import UserRepository from "./user.repository";
 
-export { UserRepository };
- */
+export { UserRepository, DvdsRepository };

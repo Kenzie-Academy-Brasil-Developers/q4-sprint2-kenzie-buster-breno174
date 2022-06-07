@@ -1,10 +1,9 @@
 import { Request } from "express";
 import { AssertsShape } from "yup/lib/object";
 import { User } from "../entities";
-import UserRepository from "../repositories/user.repository";
 import { serializedCreateUserSchema } from "../schemas/user/createUser.schema";
 import { Ilogin } from "../interfaces/user.interfaces";
-import userRepository from "../repositories/user.repository";
+import { UserRepository } from "../repositories";
 import * as dotenv from "dotenv";
 import { hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
@@ -13,7 +12,7 @@ dotenv.config();
 
 class UserService {
   loginUser = async ({ validated }: Request): Promise<Ilogin> => {
-    const user: User = await userRepository.findOne({
+    const user: User = await UserRepository.findOne({
       email: (validated as User).email,
     });
     if (!user.password) {

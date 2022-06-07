@@ -1,19 +1,22 @@
 import { Dvds } from "../entities";
-import DvdsRepository from "../repositories/dvd.repository";
 import { AssertsShape } from "yup/lib/object";
 import { Request } from "express";
 import { ErrorDvdHandle } from "../errors";
+import { IDvdList } from "../interfaces/dvd.interfaces";
+import { DvdsRepository } from "../repositories";
 
 class DvdService {
-  createDvd = async ({ validated }: Request): Promise<AssertsShape<any>> => {
+  createDvd = async ({ validated }: Request) => {
     try {
-      console.log(validated);
-      //const newDvds = (validated as Dvds[]).map(
-      //  async (dvd) => await DvdsRepository.create(dvd)
-      //);
-      //console.log("passou nos services", `\n${newDvds}`);
-      //return newDvds;
-      return [{ duration: "2h", quantity: "2", name: "titanic" }];
+      const newDvds = [];
+      for (let { name, duration } of (validated as IDvdList).dvd) {
+        newDvds.push({ name, duration });
+      }
+      const returnDvds = await DvdsRepository.saveMany(
+        newDvds as Partial<Dvds[]>
+      );
+
+      return returnDvds;
     } catch (err) {
       console.log(err);
       console.log("entrou no error do service");

@@ -12,7 +12,7 @@ import { Stock } from "./Stock";
 @Entity("dvds")
 export class Dvds {
   @PrimaryGeneratedColumn("uuid")
-  readonly DvdId: string;
+  readonly dvdId: string;
 
   @Column()
   name: string;
@@ -27,8 +27,8 @@ export class Dvds {
   stock: Stock;
 
   constructor() {
-    if (!this.DvdId) {
-      this.DvdId = uuid();
+    if (!this.dvdId) {
+      this.dvdId = uuid();
     }
   }
 }
