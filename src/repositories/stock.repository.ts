@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Stock } from "../entities";
-import { IStockRepo } from "../interfaces/stock.interface";
+import { IStockCreate, IStockRepo } from "../interfaces/stock.interface";
 
 class StockRepository implements IStockRepo {
   private ormRepo: Repository<Stock>;
@@ -14,6 +14,7 @@ class StockRepository implements IStockRepo {
   findOne = async (payload: object) => {
     return (await this.ormRepo.findOneBy({ ...payload })) as Stock;
   };
+  create = async (payload: IStockCreate) => await this.ormRepo.save(payload);
 }
 
 export default new StockRepository();

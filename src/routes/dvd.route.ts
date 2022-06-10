@@ -6,9 +6,10 @@ import { createDvdSchema } from "../schemas";
 const dvdRouter = Router();
 
 dvdRouter.post(
-  "/dvd/register",
+  "/dvds/register",
   validateSchema(createDvdSchema),
   dvdController.createDvd
 );
+dvdRouter.get("/dvds", dvdController.allDvds);
 
 export default dvdRouter;
