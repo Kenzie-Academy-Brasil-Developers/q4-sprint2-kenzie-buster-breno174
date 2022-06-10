@@ -14,7 +14,7 @@ export class Dvds {
   @PrimaryGeneratedColumn("uuid")
   readonly dvdId: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column()

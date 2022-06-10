@@ -10,7 +10,7 @@ export class Stock {
   @Column()
   quantity: number;
 
-  @Column()
+  @Column({ type: "float" })
   price: number;
 
   @OneToMany(() => Dvds, (dvd) => dvd.stock)
