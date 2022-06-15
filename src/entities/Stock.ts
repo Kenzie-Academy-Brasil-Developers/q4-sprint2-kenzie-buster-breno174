@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Dvds } from "./Dvds";
 
@@ -13,12 +19,12 @@ export class Stock {
   @Column({ type: "float" })
   price: number;
 
-  @OneToMany(() => Dvds, (dvd) => dvd.stock)
-  dvds: Dvds[];
+  @OneToOne(() => Dvds, (dvd) => dvd.stock)
+  dvds: Dvds;
 
-  constructor() {
-    if (!this.stockId) {
-      this.stockId = uuid();
-    }
-  }
+  // constructor() {
+  //   if (!this.stockId) {
+  //     this.stockId = uuid();
+  //   }
+  // }
 }

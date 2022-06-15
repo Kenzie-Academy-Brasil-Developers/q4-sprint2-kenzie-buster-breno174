@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   ManyToOne,
+  JoinColumn,
+  OneToOne,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Carts } from "./Cart";
@@ -23,12 +25,13 @@ export class Dvds {
   @OneToMany(() => Carts, (cart) => cart.dvds)
   cart: Carts[];
 
-  @ManyToOne(() => Stock, (stock) => stock.dvds)
+  @OneToOne(() => Stock, (stock) => stock.dvds, { eager: true })
+  @JoinColumn()
   stock: Stock;
 
-  constructor() {
-    if (!this.dvdId) {
-      this.dvdId = uuid();
-    }
-  }
+  // constructor() {
+  //   if (!this.dvdId) {
+  //     this.dvdId = uuid();
+  //   }
+  // }
 }
