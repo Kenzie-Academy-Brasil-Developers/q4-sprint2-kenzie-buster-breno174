@@ -15,6 +15,7 @@ class StockRepository implements IStockRepo {
     return (await this.ormRepo.findOneBy({ ...payload })) as Stock;
   };
   create = async (payload: IStockCreate) => await this.ormRepo.save(payload);
+  save = async (stock: Partial<Stock>) => await this.ormRepo.save(stock);
 }
 
 export default new StockRepository();

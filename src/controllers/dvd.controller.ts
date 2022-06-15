@@ -5,7 +5,12 @@ class DvdController {
   createDvd = async (req: Request, res: Response) => {
     try {
       const dvds = await dvdService.createDvd(req);
-
+      if (dvds.length === 0) {
+        return res.status(406).json({
+          message:
+            "No new dvds have been added, these already exist on the server",
+        });
+      }
       return res.status(201).json(dvds);
     } catch (err) {
       console.log(err);
