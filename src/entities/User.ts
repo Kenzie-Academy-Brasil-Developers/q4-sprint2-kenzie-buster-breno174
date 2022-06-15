@@ -23,10 +23,4 @@ export class User {
   comparePwd = async (pwdstring: string) => {
     return await compare(pwdstring, this.password);
   };
-
-  constructor() {
-    if (!this.userUuid) {
-      this.userUuid = uuid();
-    }
-  }
 }

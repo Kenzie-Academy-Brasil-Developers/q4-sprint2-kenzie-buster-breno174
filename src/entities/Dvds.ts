@@ -28,10 +28,4 @@ export class Dvds {
   @OneToOne(() => Stock, (stock) => stock.dvds, { eager: true })
   @JoinColumn()
   stock: Stock;
-
-  // constructor() {
-  //   if (!this.dvdId) {
-  //     this.dvdId = uuid();
-  //   }
-  // }
 }

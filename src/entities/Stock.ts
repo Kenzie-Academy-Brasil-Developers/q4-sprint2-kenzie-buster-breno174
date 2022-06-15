@@ -21,10 +21,4 @@ export class Stock {
 
   @OneToOne(() => Dvds, (dvd) => dvd.stock)
   dvds: Dvds;
-
-  // constructor() {
-  //   if (!this.stockId) {
-  //     this.stockId = uuid();
-  //   }
-  // }
 }

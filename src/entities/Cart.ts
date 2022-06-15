@@ -19,10 +19,4 @@ export class Carts {
 
   @ManyToOne(() => Dvds, (dvd) => dvd.cart)
   dvds: Dvds;
-
-  constructor() {
-    if (!this.cartId) {
-      this.cartId = uuid();
-    }
-  }
 }
