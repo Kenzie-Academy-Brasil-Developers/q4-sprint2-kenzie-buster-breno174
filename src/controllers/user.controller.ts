@@ -6,6 +6,7 @@ class UserController {
     const { status, message } = await userService.loginUser(req);
     return res.status(status).json(message);
   };
+
   createuser = async (req: Request, res: Response) => {
     const user = await userService.createUser(req);
 

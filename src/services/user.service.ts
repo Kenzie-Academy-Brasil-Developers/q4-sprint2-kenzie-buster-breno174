@@ -15,6 +15,7 @@ class UserService {
     const user: User = await UserRepository.findOne({
       email: (validated as User).email,
     });
+
     if (!user.password) {
       return {
         status: 400,
@@ -38,6 +39,7 @@ class UserService {
       message: { token: token },
     };
   };
+
   createUser = async ({ validated }: Request): Promise<AssertsShape<any>> => {
     (validated as User).password = await hash((validated as User).password, 10);
     const user: User = await UserRepository.create(validated as User);
