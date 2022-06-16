@@ -8,6 +8,9 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   readonly userUuid?: string;
 
+  @Column({ nullable: false })
+  name: string;
+
   @Column({ unique: true })
   email: string;
 
