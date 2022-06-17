@@ -4,7 +4,7 @@ import { IDvdList } from "../interfaces/dvd.interfaces";
 declare global {
   namespace Express {
     interface Request {
-      validated: User | IDvdList;
+      validated: User | IDvdList | Dvds;
     }
   }
 }
