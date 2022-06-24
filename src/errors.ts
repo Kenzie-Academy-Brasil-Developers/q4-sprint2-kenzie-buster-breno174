@@ -11,6 +11,7 @@ class ErrorDvdHandle {
 }
 
 const errorDvdHandle = (err: Error, res: Response) => {
+  console.log("aqui o error");
   if (err instanceof ErrorDvdHandle) {
     return res.status(err.status).json({ message: err.message });
   }

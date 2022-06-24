@@ -5,6 +5,7 @@ declare global {
   namespace Express {
     interface Request {
       validated: User | IDvdList | Dvds;
+      decoded: User;
     }
   }
 }

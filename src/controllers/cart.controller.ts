@@ -1,15 +1,22 @@
 import { Request, Response } from "express";
+import cartService from "../services/cart.service";
+import { ErrorDvdHandle } from "../errors";
 
 class CartController {
   buydvd = async (req: Request, res: Response) => {
     try {
-      console.log("-------------");
-      console.log(req.validated);
-      console.log("-------------");
+      // console.log("-------------");
+      // console.log(req.validated);
+      // console.log("-------------");
 
-      return res.status(200).json({ res: "response" });
+      const { status, message } = await cartService.buyCart(req);
+
+      return res.status(status).send(message);
     } catch (error) {
-      console.log(error);
+      if (error instanceof ErrorDvdHandle) {
+        return res.status(error.status).json(error.message);
+      }
+      console.log(error, "veio daqui");
       return res.status(418).json({ error: "I`m a tea pot" });
     }
   };
