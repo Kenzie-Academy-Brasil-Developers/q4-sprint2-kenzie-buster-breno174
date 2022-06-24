@@ -7,7 +7,7 @@ dotenv.config();
 AppDataSource.initialize()
   .then(() => {
     console.log("Database connected!");
-    const port = process.env.PORT;
+    const port = process.env.PORT ?? 3000;
 
     app.listen(port, () => {
       console.log(`App running on http://localhost:${port}`);

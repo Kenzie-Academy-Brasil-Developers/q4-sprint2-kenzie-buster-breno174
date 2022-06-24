@@ -10,3 +10,4 @@ temp/
 *.log
 package-lock*
 dist/
+build/
