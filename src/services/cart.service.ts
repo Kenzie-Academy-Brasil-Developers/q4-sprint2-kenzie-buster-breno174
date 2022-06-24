@@ -10,8 +10,7 @@ class CartService {
       const user = request.decoded;
       const { quantity } = request.body;
 
-      if (quantity > dvd.stock.quantity) {
-        // throw new ErrorDvdHandle(400, "quantidade ultrapassada");
+      if (Number(quantity) > dvd.stock.quantity) {
         return {
           status: 400,
           message: {
@@ -19,7 +18,6 @@ class CartService {
           },
         };
       }
-      // console.log(dvd, "\n", user, "\n", "quantidade: ", quantity);
 
       const newCart = new Carts();
       newCart.paid = false;
