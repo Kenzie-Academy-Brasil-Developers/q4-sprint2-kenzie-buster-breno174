@@ -24,5 +24,6 @@ dvdRouter.post(
   verifyDvdExists,
   cartController.buydvd
 );
+dvdRouter.post("/carts/pay", validateToken, cartController.payDvds);
 
 export default dvdRouter;

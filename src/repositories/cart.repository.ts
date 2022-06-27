@@ -11,6 +11,9 @@ class CartRepository implements ICartRepo {
   }
 
   buycart = async (cart: Partial<Carts>) => await this.ormRepo.save(cart);
+  allcarts = async () => await this.ormRepo.find();
+  updatecart = async (cart: Partial<Carts>) =>
+    await this.ormRepo.update(cart as object, { paid: true });
 }
 
 export default new CartRepository();
